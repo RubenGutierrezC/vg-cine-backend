@@ -1,6 +1,32 @@
 const components = {
   // error model
   schemas: {
+    Profile: {
+      type: "object",
+      properties: {
+        firstName: {
+          type: "string",
+          example: "Sweet",
+        },
+        lastName: {
+          type: "string",
+          example: "Petter",
+        },
+        id: {
+          type: "string",
+          example: "25369874",
+        },
+        address: {
+          type: "string",
+          example: "en su casa",
+        },
+        email: {
+          type: "string",
+          example: "sweetpeter99@gmail.com",
+        },
+      },
+    },
+
     Movie: {
       type: "object",
       properties: {

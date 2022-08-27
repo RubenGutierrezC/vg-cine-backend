@@ -7,7 +7,7 @@ const userSchema = new Schema({
   email: String,
   password: String,
   address: String,
-  birthday: String
+  birthday: String,
 });
 
 export const userModel = model("User", userSchema);

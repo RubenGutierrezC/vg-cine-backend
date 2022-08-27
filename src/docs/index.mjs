@@ -1,6 +1,7 @@
 import components from "./components.mjs";
 import { post } from "./paths/loginPath.mjs";
 import { getMovieDetail, getMovies } from "./paths/moviePath.mjs";
+import { getProfile } from "./paths/profilePath.mjs";
 import { register } from "./paths/registerPath.mjs";
 import { getTickets, registerTicket } from "./paths/ticketPath.mjs";
 
@@ -30,8 +31,17 @@ const docs = {
     "/movies": {
       get: getMovies,
     },
-    "/movie-detail/:id": {
+    "/movie-detail/{id}": {
       get: getMovieDetail,
+    },
+    "/profile": {
+      get: getProfile,
+    },
+    "/edit-profile": {
+      get: getProfile,
+    },
+    "/change-password": {
+      get: getProfile,
     },
   },
 };

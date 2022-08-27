@@ -45,17 +45,18 @@ export const getMovies = {
 
 export const getMovieDetail = {
   tags: ["Movies APIs"], // operation's tag.
+  description: "API para consultar una pelicula", // operation's desc.
+
   parameters: [
     {
-      in: "oath",
-      name: "id",
-      schema: {
-        type: "number",
-        example: "610150",
-      },
+      in: "path", // location of the param
+      name: "id", // name of the param
+      type: "string",
+      example: "610150",
+      required: true, // Mandatory param
+      description: "Id de la pelicula a mostrar", // param desc.
     },
-  ],
-  description: "API para consultar una pelicula", // operation's desc.
+  ], // expected params.
   // expected responses
   responses: {
     // response code

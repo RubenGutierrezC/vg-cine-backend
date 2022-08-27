@@ -1,9 +1,5 @@
 import { Router } from "express";
-import {
-  loginValidations,
-  registerValidations,
-} from "./middleware/authMiddlewares.mjs";
-import { createTaskValidations } from "./middleware/taskMiddlewares.mjs";
+import { loginValidations } from "./middleware/authMiddlewares.mjs";
 import { ticketModel } from "./models/ticketModel.mjs";
 import { userModel } from "./models/userModel.mjs";
 import { generateJWT, verifyToken } from "./utils/jwt.mjs";
@@ -56,6 +52,7 @@ router.post("/register", async (req, res) => {
       email,
       password,
       birthday,
+      address,
     });
     await newUser.save();
 
@@ -69,24 +66,24 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.delete("/delete/:email", async (req, res) => {
-  try {
-    const { email } = req.params;
+// router.delete("/delete/:email", async (req, res) => {
+//   try {
+//     const { email } = req.params;
 
-    const user = await userModel.findOneAndDelete({ email });
+//     const user = await userModel.findOneAndDelete({ email });
 
-    res.json({
-      message: "Usuario eliminado",
-      deleted: Boolean(user),
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: "SERVER_ERROR",
-    });
-  }
-});
+//     res.json({
+//       message: "Usuario eliminado",
+//       deleted: Boolean(user),
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       error: "SERVER_ERROR",
+//     });
+//   }
+// });
 
-// task
+// movie APIs
 router.get("/movies", async (req, res) => {
   try {
     const { all } = req.query;
@@ -112,6 +109,8 @@ router.get("/movie-detail/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
+    console.log(req.params);
+
     const { data } = await moviesAPI({
       path: `movie/${id}`,
     });
@@ -134,6 +133,7 @@ router.get("/movie-detail/:id", async (req, res) => {
   }
 });
 
+// tickets APIs
 router.post("/ticket", verifyToken, async (req, res) => {
   try {
     const { userId, ticketCount, paymentMethod, id, referenceNumber } =
@@ -167,6 +167,68 @@ router.get("/ticket", verifyToken, async (req, res) => {
     res.json({
       message: "ok",
       data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: "SERVER_ERROR",
+    });
+  }
+});
+
+// profile APIs
+router.get("/profile", verifyToken, async (req, res) => {
+  try {
+    const { userId } = req.body;
+
+    const data = await userModel.findOne(
+      { _id: userId },
+      { address: 1, birthday: 1, email: 1, firstName: 1, lastName: 1, _id: 0 }
+    );
+
+    res.json({
+      message: "ok",
+      data: data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: "SERVER_ERROR",
+    });
+  }
+});
+
+router.get("/edit-profile", verifyToken, async (req, res) => {
+  try {
+    const { userId, firstName, lastName, email, birthday, address } = req.body;
+
+    await userModel.findOneAndUpdate(
+      { _id: userId },
+      { firstName, lastName, email, birthday, address }
+    );
+
+    res.json({
+      message: "perfil cambiado con éxito",
+    });
+  } catch (error) {
+    res.status(500).json({
+      error: "SERVER_ERROR",
+    });
+  }
+});
+
+router.get("/change-password", verifyToken, async (req, res) => {
+  try {
+    const { userId, password, confirmPassword } = req.body;
+
+    if (password !== confirmPassword) {
+      res.status(400).json({
+        error: "Las contraseñas no coinciden",
+      });
+    }
+
+    await userModel.findOneAndUpdate({ _id: userId }, { password });
+
+    res.json({
+      message: "contraseña cambiada con éxito",
     });
   } catch (error) {
     res.status(500).json({

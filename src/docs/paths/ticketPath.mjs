@@ -1,7 +1,7 @@
 import { errorResponses } from "./errorPaths.mjs";
 
 export const getTickets = {
-  tags: ["Task APIs"], // operation's tag.
+  tags: ["Ticket APIs"], // operation's tag.
   description: "API para consultar todas los tickets", // operation's desc.
   // expected responses
   responses: {
@@ -34,7 +34,7 @@ export const getTickets = {
 };
 
 export const registerTicket = {
-  tags: ["Task APIs"], // operation's tag.
+  tags: ["Ticket APIs"], // operation's tag.
   description: "API para un ticket", // operation's desc.
   requestBody: {
     // expected request body
