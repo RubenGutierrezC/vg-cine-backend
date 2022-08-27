@@ -196,7 +196,7 @@ router.get("/profile", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/edit-profile", verifyToken, async (req, res) => {
+router.put("/edit-profile", verifyToken, async (req, res) => {
   try {
     const { userId, firstName, lastName, email, birthday, address } = req.body;
 
@@ -215,7 +215,7 @@ router.get("/edit-profile", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/change-password", verifyToken, async (req, res) => {
+router.put("/change-password", verifyToken, async (req, res) => {
   try {
     const { userId, password, confirmPassword } = req.body;
 

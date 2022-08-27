@@ -1,3 +1,5 @@
+import { errorResponses } from "./errorPaths.mjs";
+
 export const post = {
   tags: ["Auth APIs"], // operation's tag.
   description: "API para iniciar sesión", // operation's desc.
@@ -47,5 +49,6 @@ export const post = {
         },
       },
     },
+    ...errorResponses,
   },
 };

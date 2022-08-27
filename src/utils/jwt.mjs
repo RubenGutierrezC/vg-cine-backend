@@ -19,14 +19,14 @@ export const verifyToken = (req, res, next) => {
     const { authorization } = req.headers;
 
     if (!authorization)
-      return res.status(403).json({ mensaje: "token invalido" });
+      return res.status(400).json({ mensaje: "token invalido" });
 
     const bearer = authorization.split(" ");
     const bearerToken = bearer[1];
 
     jwt.verify(bearerToken, secretToken, (err, data) => {
       if (err) {
-        return res.status(403).json({ mensaje: "token invalido" });
+        return res.status(400).json({ mensaje: "token invalido" });
       } else {
         const { id } = jwt.decode(bearerToken);
         req.body.userId = id;

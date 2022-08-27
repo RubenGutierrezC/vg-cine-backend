@@ -1,3 +1,5 @@
+import { errorResponses } from "./errorPaths.mjs";
+
 export const register = {
   tags: ["Auth APIs"], // operation's tag.
   description: "API para registrar usuario", // operation's desc.
@@ -62,5 +64,6 @@ export const register = {
         },
       },
     },
+    ...errorResponses,
   },
 };
