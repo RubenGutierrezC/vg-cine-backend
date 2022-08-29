@@ -35,7 +35,7 @@ router.post("/login", loginValidations, async (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { firstName, lastName, email, password, birthday, address } =
+    const { firstName, lastName, email, password, birthday, address, id } =
       req.body;
 
     const user = await userModel.findOne({ email });
@@ -53,6 +53,7 @@ router.post("/register", async (req, res) => {
       password,
       birthday,
       address,
+      id
     });
     await newUser.save();
 
@@ -182,7 +183,7 @@ router.get("/profile", verifyToken, async (req, res) => {
 
     const data = await userModel.findOne(
       { _id: userId },
-      { address: 1, birthday: 1, email: 1, firstName: 1, lastName: 1, _id: 0 }
+      { address: 1, birthday: 1, email: 1, firstName: 1, lastName: 1, id: 1, _id: 0 }
     );
 
     res.json({
