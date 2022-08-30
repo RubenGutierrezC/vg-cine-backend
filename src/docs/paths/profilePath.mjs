@@ -51,10 +51,6 @@ export const editProfile = {
               type: "string",
               example: "probencio",
             },
-            email: {
-              type: "string",
-              example: "probencio",
-            },
             address: {
               type: "string",
               example: "calle 42 con av venezuela",
