@@ -199,11 +199,11 @@ router.get("/profile", verifyToken, async (req, res) => {
 
 router.put("/edit-profile", verifyToken, async (req, res) => {
   try {
-    const { userId, firstName, lastName, birthday, address } = req.body;
+    const { userId, firstName, lastName, birthday, address, id } = req.body;
 
     await userModel.findOneAndUpdate(
       { _id: userId },
-      { firstName, lastName, birthday, address }
+      { firstName, lastName, birthday, address, id }
     );
 
     res.json({

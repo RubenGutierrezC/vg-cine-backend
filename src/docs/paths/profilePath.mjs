@@ -51,6 +51,10 @@ export const editProfile = {
               type: "string",
               example: "probencio",
             },
+            id: {
+              type: "string",
+              example: "25162359",
+            },
             address: {
               type: "string",
               example: "calle 42 con av venezuela",
