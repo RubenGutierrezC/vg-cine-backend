@@ -56,25 +56,29 @@ const components = {
     Task: {
       type: "object",
       properties: {
-        _id: {
+        id: {
           type: "string",
           example: "62f256783fbf1b60c03e5cc8",
         },
-        name: {
+        ticketCount: {
+          type: "number",
+          example: 2,
+        },
+        paymentMethod: {
           type: "string",
-          example: "test",
+          example: "Pago movil",
+        },
+        referenceNumber: {
+          type: "string",
+          example: "4409",
         },
         date: {
           type: "string",
-          example: "10/10/2022",
-        },
-        priority: {
-          type: "number",
-          example: 6,
+          example: "2022-08-22T04:55:31.819+00:00",
         },
         userId: {
           type: "string",
-          example: "62f1bad2fc20061f65e925d9",
+          example: "63030c438c52122478addc64",
         },
       },
     },
