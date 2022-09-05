@@ -60,6 +60,10 @@ export const registerTicket = {
               type: "string",
               example: "0428",
             },
+            movieTitle: {
+              type: "string",
+              example: "Dragon Ball Super: Super Hero",
+            },
           },
         },
       },

@@ -72,6 +72,10 @@ const components = {
           type: "string",
           example: "Pago movil",
         },
+        movieTitle: {
+          type: "string",
+          example: "Dragon Ball Super: Super Hero",
+        },
         referenceNumber: {
           type: "string",
           example: "4409",

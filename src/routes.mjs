@@ -137,7 +137,7 @@ router.get("/movie-detail/:id", async (req, res) => {
 // tickets APIs
 router.post("/ticket", verifyToken, async (req, res) => {
   try {
-    const { userId, ticketCount, paymentMethod, id, referenceNumber } =
+    const { userId, ticketCount, paymentMethod, id, referenceNumber, movieTitle } =
       req.body;
 
     const data = await ticketModel.create({
@@ -146,6 +146,7 @@ router.post("/ticket", verifyToken, async (req, res) => {
       paymentMethod,
       id,
       referenceNumber,
+      movieTitle
     });
     await data.save();
 

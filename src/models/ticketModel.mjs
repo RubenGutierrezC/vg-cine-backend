@@ -6,6 +6,7 @@ const ticketSchema = new Schema({
   paymentMethod: String,
   id: String,
   referenceNumber: String,
+  movieTitle: String,
   date: {
     type: Date,
     default: () => {
