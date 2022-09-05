@@ -56,9 +56,13 @@ const components = {
     Task: {
       type: "object",
       properties: {
-        id: {
+        _id: {
           type: "string",
           example: "62f256783fbf1b60c03e5cc8",
+        },
+        id: {
+          type: "string",
+          example: "28563924",
         },
         ticketCount: {
           type: "number",
